@@ -30,8 +30,8 @@ func Home(c *gin.Context) {
 
 // About 关于控制器
 func About(c *gin.Context) {
-	// about 页面就直接展示的项目根目录下的 README.md
-	path := filepath.Join(config.Root, "README.md")
+	// about 页面就直接展示的项目根目录下的 qwe.md
+	path := filepath.Join(config.Root, "qwe.md")
 	about, err := ioutil.ReadFile(path)
 
 	if err != nil {
@@ -76,7 +76,7 @@ func ToKeywords(works ...string) string {
 
 // Webhook github 钩子
 func Webhook(c *gin.Context) {
-	singn := c.GetHeader("X-Hub-Signature")
+	/*singn := c.GetHeader("X-Hub-Signature")
 	body, err := ioutil.ReadAll(c.Request.Body)
 	if err != nil {
 		mylog.LogErr.Printf("github hook %v", err)
@@ -86,7 +86,7 @@ func Webhook(c *gin.Context) {
 	if !checkSecret(singn, body) {
 		mylog.Error("github hook check secret failure.")
 		return
-	}
+	}*/
 
 	pullDocs()
 

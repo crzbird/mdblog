@@ -4,12 +4,9 @@ package config
 
 import (
 	"flag"
-	"os"
-	"os/exec"
-	"path/filepath"
-	"strings"
-
 	"github.com/broqiang/mdblog/app/helper"
+	"os"
+	"path/filepath"
 )
 
 // Root 项目的根目录
@@ -53,16 +50,17 @@ func root() {
 		// 如果没有设置，就是用当前可执行文件所在的目录
 
 		// 验证下文件是否存在，我们执行的就是自己，也不存在不存在的问题了
-		file, _ := exec.LookPath(os.Args[0])
+		//file, _ := exec.LookPath(os.Args[0])
 
 		// 获取文件的绝对路径
-		path, _ := filepath.Abs(file)
+		//path, _ := filepath.Abs(file)
 
 		// 获取最后一个文件名所在的位置，如 /home/bro/blog ，
 		// 这里可以获取到 blog 的 b 所在的位置，为了下面的 slice 截取字符串
-		index := strings.LastIndex(path, string(os.PathSeparator))
+		//index := strings.LastIndex(path, string(os.PathSeparator))
 
-		Root = path[:index]
+		//Root = path[:index]
+		Root, _ = os.Getwd()
 	}
 
 	root, err := filepath.Abs(Root)

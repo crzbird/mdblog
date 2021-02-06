@@ -2,12 +2,13 @@
 package mdfile
 
 import (
-	"errors"
+	"fmt"
+	"io/ioutil"
 	"path/filepath"
+	"strings"
 
 	"github.com/broqiang/mdblog/app/helper"
 
-	"github.com/BurntSushi/toml"
 	"github.com/broqiang/mdblog/app/config"
 )
 
@@ -76,12 +77,21 @@ func parseCategories() Categories {
 		Category []Category
 	}{}
 
-	if _, err := toml.DecodeFile(getCategoriesPath(), &temp); err != nil {
-		helper.Panicf("cannot parse categories.toml config file. %v", err)
+	dirs, err := ioutil.ReadDir(config.Root + "/" + config.Cfg.MarkdownDir)
+	if len(dirs) <= 0 || err != nil {
+		helper.Panicf("cannot list categories. %v", err)
 	}
-
-	if temp.Category == nil {
-		helper.PanicErr(errors.New("have not been defined category"))
+	for _, dir := range dirs {
+		if dir.IsDir() {
+			temp.Category = append(temp.Category, Category{
+				Title:       strings.ToUpper(dir.Name()),
+				Number:      0,
+				Path:        dir.Name(),
+				Description: fmt.Sprintf("about %s", dir.Name()),
+				OutLink:     false,
+				Active:      false,
+			})
+		}
 	}
 
 	return temp.Category

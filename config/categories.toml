@@ -40,9 +40,3 @@
     path = "devtools"
     description = "开发工具"
 
-[[category]]
-    title = "About"
-    path = "/about"
-    description = "关于本博客"
-    # 外链，不去解析 markdwon
-    out_link = true
