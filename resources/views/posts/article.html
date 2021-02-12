@@ -35,7 +35,7 @@
                                     {{ .post.UpdatedAt.Format "2006-01-02" }}</small>
                             </p>
                             <div class="ml-auto">
-                                <a href="https://github.com/BroQiang/blog-docs/blob/master/{{ $.post.Category | tolower }}/{{ $.post.Path }}.md"
+                                <a href="{{ .post.GithubUrl }}"
                                     class="btn btn-sm btn-light" title="如果你发现本文有错误的地方，欢迎到 Github 上改正" target="_blank">
                                     <span class="iconfont icon-github"></span> 修改原文
                                 </a>
