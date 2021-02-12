@@ -44,6 +44,9 @@ type Article struct {
 	// 作者的个人主页
 	HomePage string `toml:"home_page"`
 
+	//github 地址
+	GithubUrl string `toml:"github_url"`
+
 	// 简短的描述
 	Description string
 
